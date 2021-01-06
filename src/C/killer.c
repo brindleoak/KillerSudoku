@@ -1,36 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
+int rules[50][5];
 
-int parms[][5] = {{7, 0, 1, -1, -1}, {27, 2, 9, 10, 11}, {7, 3, 4, -1, -1}, {17, 5, 6, 7, 15},
-		{16, 8, 17, -1, -1}, {8, 12, 13, 14, -1}, {14, 16, 25, 26, -1}, {10, 18, 19, 28, -1},
-		{13, 20, 21, -1, -1}, {19, 22, 23, 32, -1}, {19, 24, 33, 42, -1}, {16, 27, 36, -1, -1},
-		{3, 29, 38, -1, -1}, {12, 30, 31, -1, -1}, {9, 34, 35, -1, -1}, {8, 37, 46, -1, -1}, {12, 39, 48, -1, -1},
-		{5, 40, 49, -1, -1}, {14, 41, 50, -1, -1}, {6, 43, 44, 53, -1}, {17, 45, 54, 63, 72},
-		{7, 47, 56, -1, -1}, {16, 51, 52, -1, -1}, {16, 55, 64, 65, -1}, {17, 57, 66, -1, -1},
-		{18, 58, 59, 67, -1}, {7, 60, 69, 70, -1}, {23, 61, 62, 71, -1}, {7, 68, 77, -1, -1},
-		{17, 73, 74, -1, -1}, {3, 75, 76, -1, -1}, {15, 78, 79, 80, -1}, {-1}};
+int readRules() {
+	int i = 0;
+    char line[128];
+	char* token = NULL;
+  	FILE* fp = fopen("puzzle.csv","r");
+  	if (fp == NULL) {
+    	printf("File puzzle.csv not found");
+		exit(0);
+	}
+		
+	while (fgets( line, sizeof(line), fp) != NULL && i < 50) {
+    	int j = 0;
+    	for (token = strtok(line, ","); j < 5; token = strtok(NULL, ",")) {
+        	if (token == NULL)
+				rules[i][j++] = -1;
+			else	   
+				rules[i][j++] = atof(token);
+      	}
+      	i++;
+    }
+	rules[i][0] = -1;
+    fclose(fp);
+}
 
 int checkRules(int b[81], int i, int m) {
 
-	for (int j = 0; parms[j][0] != -1; j++) {
+	for (int j = 0; rules[j][0] != -1; j++) {
 		int sum = 0;
 
-		for (int x = 1; x < 5 && parms[j][x] > -1; x++) {
-			if (parms[j][x] == i)
+		for (int x = 1; x < 5 && rules[j][x] > -1; x++) {
+			if (rules[j][x] == i)
 				sum = sum + m;
 			else	
-				if (b[parms[j][x]] == 0) {
-					sum = -1;
-					break;
+				if (b[rules[j][x]] == 0) {
+					return 0;
 				}
 				else
-					sum = sum + b[parms[j][x]];
+					sum = sum + b[rules[j][x]];
 		}
 
-		if (sum > -1)
-			if (sum != parms[j][0])
-				return 0;
+		if (sum != rules[j][0])
+			return 0;
 	}
 
 	return -1;
@@ -83,6 +98,9 @@ int recursiveCheck(int board[81]) {
 }
 
 int main() {
+
+	readRules();
+
 	int startBoard[81];
 	for (int i=0; i < 81; i++) {startBoard[i] = 0;}
 
