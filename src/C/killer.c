@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 int rules[50][5];
+clock_t t;
 
 int readRules()
 {
@@ -32,35 +34,37 @@ int readRules()
 	fclose(fp);
 }
 
-int checkRules(int b[81], int i, int m)
+int checkRules(int b[81], int i)
 {
-
-	for (int j = 0; rules[j][0] != -1; j++)
+	int j;
+	for (j = 0; rules[j][1] != i && rules[j][2] != i && rules[j][3] != i && rules[j][4] != i; j++)
 	{
-		int sum = 0;
-
-		for (int x = 1; x < 5 && rules[j][x] > -1; x++)
-		{
-			if (rules[j][x] == i)
-				sum = sum + m;
-			else if (b[rules[j][x]] == 0)
-			{
-				return 0;
-			}
-			else
-				sum = sum + b[rules[j][x]];
-		}
-
-		if (sum != rules[j][0])
-			return 0;
 	}
 
-	return -1;
+	if (b[rules[j][1]] == 0 || b[rules[j][2]] == 0 || b[rules[j][3]] == 0 || b[rules[j][4]] == 0)
+		return -1;
+
+	if (rules[j][3] == -1)
+		if (rules[j][0] == b[rules[j][1]] + b[rules[j][2]])
+			return -1;
+		else
+			return 0;
+
+	if (rules[j][4] == -1)
+		if (rules[j][0] == b[rules[j][1]] + b[rules[j][2]] + b[rules[j][3]])
+			return -1;
+		else
+			return 0;
+
+	if (rules[j][0] == b[rules[j][1]] + b[rules[j][2]] + b[rules[j][3]] + b[rules[j][4]])
+		return -1;
+	else
+		return 0;
 }
 
-int checkBoard(int b[81], int i, int m)
+int checkBoard(int b[81], int i)
 {
-	if (checkRules(b, i, m) == 0)
+	if (checkRules(b, i) == 0)
 		return 0;
 
 	for (int j = 0; j < 81; j++)
@@ -69,7 +73,7 @@ int checkBoard(int b[81], int i, int m)
 		{
 			if ((i / 9 == j / 9) || ((i - j) % 9 == 0) || ((i / 27 == j / 27) && (i % 9 / 3 == j % 9 / 3)))
 			{
-				if (m == b[j])
+				if (b[i] == b[j])
 					return 0;
 			}
 		}
@@ -80,7 +84,6 @@ int checkBoard(int b[81], int i, int m)
 
 int recursiveCheck(int board[81])
 {
-
 	int i;
 	int m;
 	int newBoard[81];
@@ -95,18 +98,22 @@ int recursiveCheck(int board[81])
 	{
 		for (int j = 0; j < 81; j++)
 			printf("%d ", board[j]);
+
+		t = clock() - t;
+		double e = ((double)t)/CLOCKS_PER_SEC;
+		printf("\nelapsed time=%f\n", e);
 		exit(0);
 	}
 
 	for (m = 1; m < 10; m++)
 	{
-		if (checkBoard(board, i, m))
+		for (int j = 0; j < 81; j++)
 		{
-			for (int j = 0; j < 81; j++)
-			{
-				newBoard[j] = board[j];
-			}
-			newBoard[i] = m;
+			newBoard[j] = board[j];
+		}
+		newBoard[i] = m;
+		if (checkBoard(newBoard, i))
+		{
 			recursiveCheck(newBoard);
 		}
 	}
@@ -114,7 +121,7 @@ int recursiveCheck(int board[81])
 
 int main()
 {
-
+	t = clock();
 	readRules();
 
 	int startBoard[81];
