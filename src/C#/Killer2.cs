@@ -7,6 +7,7 @@ using System.Diagnostics;
 
 
 int[][] rule = new int[81][];
+char[,] related = new char[81, 81];
 DateTime t1;
 
 //Convert a CSV file into an array of rules, one for each cell on the board
@@ -31,14 +32,22 @@ void getParms()
 bool checkAllRules(int[] board, int i, int m)
 {
     int[] p = rule[i];
+    int sum = m;
 
-    var cells = p.Skip(1).Select(i => board[i]).ToArray();
-    cells[cells.Length - 1] = m;
-    if (!cells.Contains(0))
-        if (p[0] != cells.Sum())
-            return false;
+    for (int x = 1; x < p.Length; x++)
+    {
+        if (p[x] != i)
+        {
+            if (board[p[x]] == 0)
+                return true;
+            sum += board[p[x]];
+        }
+    }
 
-    return true;
+    if (sum == p[0])
+        return true;
+    else
+        return false;
 }
 
 //Check the board is valid - the value m at position i is allowed
@@ -48,12 +57,21 @@ bool checkBoardValid(int[] board, int i, int m)
     bool sameCol(int i, int j) { return (i - j) % 9 == 0; }
     bool sameBlock(int i, int j) { return ((i / 27 == j / 27) && (i % 9 / 3 == j % 9 / 3)); }
 
-    foreach (int j in Enumerable.Range(0, 80))
+    for (int j = 0; j < 81; j++)
     {
         if (i != j && board[j] != 0)
-            if (sameRow(i, j) || sameCol(i, j) || sameBlock(i, j))
+        {
+            if (related[i, j] == '\0')
+            {
+                if (sameRow(i, j) || sameCol(i, j) || sameBlock(i, j))
+                    related[i, j] = 'Y';
+                else
+                    related[i, j] = 'N';
+            }
+            if (related[i, j] == 'Y')
                 if (board[j] == m)
                     return false;
+        }
     }
 
     return true;
