@@ -57,21 +57,19 @@ bool checkBoardValid(int[] board, int i, int m)
     bool sameCol(int i, int j) { return (i - j) % 9 == 0; }
     bool sameBlock(int i, int j) { return ((i / 27 == j / 27) && (i % 9 / 3 == j % 9 / 3)); }
 
-    for (int j = 0; j < 81; j++)
+    for (int j = 0; j < i; j++)
     {
-        if (i != j && board[j] != 0)
+        if (related[i, j] == '\0')
         {
-            if (related[i, j] == '\0')
-            {
-                if (sameRow(i, j) || sameCol(i, j) || sameBlock(i, j))
-                    related[i, j] = 'Y';
-                else
-                    related[i, j] = 'N';
-            }
-            if (related[i, j] == 'Y')
-                if (board[j] == m)
-                    return false;
+            if (sameRow(i, j) || sameCol(i, j) || sameBlock(i, j))
+                related[i, j] = 'Y';
+            else
+                related[i, j] = 'N';
         }
+        if (related[i, j] == 'Y')
+            if (board[j] == m)
+                return false;
+
     }
 
     return true;
