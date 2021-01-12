@@ -1,4 +1,5 @@
 use std::collections::HashSet;
+use std::collections::HashMap;
 use std::process;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
@@ -14,9 +15,12 @@ fn main() {
 			.filter_map(|word| word.parse().ok())
 			.collect()))
 		.collect();
-
-    //values.sort_by(|a, b| a[a.len() - 1].cmp(&b[b.len() - 1]));
-    println!("sorted vector: {:?}", values);
+	let mut parms = HashMap::new();
+    
+    for v in &values {
+		parms.insert( v[v.len()-1], v);
+        }
+    println!("{:?}", parms);	
 
     fn same_row(i: usize, j: usize) -> bool {
         return (i / 9) >> 0 == (j / 9) >> 0;
@@ -34,20 +38,15 @@ fn main() {
         return (m / 27) >> 0 == (n / 27) >> 0 && ((m % 9) / 3) >> 0 == ((n % 9) / 3) >> 0;
     }
 
-    fn check_row(row_to_check: &mut Vec<usize>, vals: &Vec<Vec<usize>>) -> bool {
+    fn check_row(row_to_check: &mut Vec<usize>, vals: &HashMap<usize,&Vec<usize>>) -> bool {
         let pos: usize;
         if row_to_check.iter().position(|&x| x == 0).is_none() {
             pos = 80;
         } else {
             pos = row_to_check.iter().position(|&s| s == 0).unwrap();
         }
-        let selected_parms: Vec<Vec<usize>> = vals
-            .iter()
-            .filter(|&parm| *(parm.last().unwrap()) == pos - 1)
-            .cloned()
-            .collect();
-        if selected_parms.len() > 0 {
-            let selected_parm = &selected_parms[0];
+        if vals.contains_key(&(pos-1)) {
+            let selected_parm: Vec<usize> = vals.get(&(pos -1)).unwrap().to_vec();
             let sub_parm = &selected_parm[1..selected_parm.len()];
             let total = sub_parm
                 .iter()
@@ -63,7 +62,7 @@ fn main() {
         }
     }
 
-    fn recursive_check(in_board: &[usize], vals: &Vec<Vec<usize>>) -> bool {
+    fn recursive_check(in_board: &[usize], vals: &HashMap<usize,&Vec<usize>>) -> bool {
         if in_board.iter().position(|&x| x == 0).is_none() {
             return true;
         } else {
@@ -84,7 +83,7 @@ fn main() {
                 if !excluded_numbers.contains(&y) {
                     let mut new_board: Vec<usize> =
                         [&in_board[..i], &[y], &in_board[(i + 1) ..]].concat();
-                    if check_row(&mut new_board, &vals) {
+                    if check_row(&mut new_board, vals) {
                         if i < 80 {
                             recursive_check(&new_board, &vals);
                         } else {
@@ -100,5 +99,5 @@ fn main() {
     }
 
     let initial_row: [usize; 81] = [0; 81];
-    recursive_check(&initial_row, &values);
+    recursive_check(&initial_row, &parms);
 }
