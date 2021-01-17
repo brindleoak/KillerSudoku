@@ -1,13 +1,10 @@
-// Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
-
 open System
 open System.IO
-open System.Diagnostics.CodeAnalysis
 
 let t1 = DateTime.Now
 
-let checkAllRules (board: int []) (rules: Map<int, int []>) (i: int) (m: int) =
-
+// check the rules for the cell: first value in the array must be the sum of the cells 
+let checkAllRules (board: int []) (rules: Map<int, int []>) i m =
     match rules.TryFind i with
     | Some p ->
         let cells =
@@ -23,7 +20,6 @@ let checkAllRules (board: int []) (rules: Map<int, int []>) (i: int) (m: int) =
 
 //Check the board is invalid - the value m at position i is not allowed
 let checkBoardInvalid (board: int []) i m: bool =
-
     let sameRow i j = i / 9 = j / 9
     let sameCol i j = (i - j) % 9 = 0
     let sameBlock i j = ((i / 27 = j / 27) && (i % 9 / 3 = j % 9 / 3))
@@ -43,29 +39,27 @@ let checkBoardInvalid (board: int []) i m: bool =
         | None -> false
 
 let rec recursiveCheck (board: int []) (rules: Map<int, int []>) =
-    
     let i = 
         try
-          Array.findIndex (fun e -> e = 0) board
+            Array.findIndex (fun e -> e = 0) board
         with  ex -> 
-          printfn "%A" board
-          let t2 = DateTime.Now - t1
-          printfn "%f" t2.TotalSeconds
-          Environment.Exit(0)
-          0
+            printfn "%A" board
+            let t2 = DateTime.Now - t1
+            printfn "%f" t2.TotalSeconds
+            Environment.Exit(0)
+            0
+                     
 
-    seq { 1 .. 9 }
-        |> Seq.iter
-            (fun m ->
-                if not (checkBoardInvalid board i m) then
-                    if checkAllRules board rules i m then
-                        let newBoard = Array.copy board
-                        Array.set newBoard i m
-                        recursiveCheck newBoard rules |> ignore)
+    seq { 1 .. 9 } |> Seq.iter
+        (fun m ->
+            if not (checkBoardInvalid board i m) then
+                if checkAllRules board rules i m then
+                    let newBoard = Array.copy board
+                    Array.set newBoard i m
+                    recursiveCheck newBoard rules)
 
 [<EntryPoint>]
 let main argv =
-
     let rules =
         File.ReadLines("/home/simon/F#/Killer/puzzle.csv") // fsharplint:disable-line Hints
         |> Seq.map (fun f -> (f.Split(',') |> Seq.map int |> Seq.toArray))
@@ -75,5 +69,5 @@ let main argv =
     let board: int array = Array.zeroCreate 81
 
     printf "started...\n"
-    recursiveCheck board rules |> ignore
+    recursiveCheck board rules 
     0
