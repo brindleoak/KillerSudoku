@@ -8,9 +8,7 @@ let t1 = DateTime.Now
 
 let checkAllRules (board: int []) (rules: Map<int, int []>) (i: int) (m: int) =
 
-    let rule = rules.TryFind i
-
-    match rule with
+    match rules.TryFind i with
     | Some p ->
         let cells =
             p.[1..p.Length - 2]
