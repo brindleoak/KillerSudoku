@@ -11,7 +11,11 @@
          (map #(clojure.string/split % #","))
          (map #(parse-vec-of-str %)))))
 
-(def parms (sort-by last (parse-csv (slurp "resources/puzzle.csv"))))
+(def rules
+  "Take the parms 'list of lists' and turn into a map giving the one rule for each cell"
+  (letfn [(explode [rule] (for [i (rest rule)] {i rule}))]
+  (into {} (flatten (for [rule (parse-csv (slurp "resources/puzzle.csv"))] (explode rule))))))
+      
 
 (defn excluded-numbers
   "For a given board and cell number, return a seq of the values in all related cells"
@@ -31,40 +35,31 @@
     range80)))
 
 (defn check-rule
- "Check if the given rule fails on the given board. A rule is a list where the first item
+ "Check if the cell's rule fails on the given board. A rule is a list where the first item
   is the required total and the remaining items are the cell positions that must be summed"
- [board rule]
- (let [cells (map #(board %) (rest rule))]
+ [board cell]
+ (let [rule (rules cell)
+       cells (map #(board %) (rest rule))]
   (if-not (some #{0} cells)
     (= (first rule) (reduce + cells))
     true
   )))
-
-(defn check-all-rules
-  "Check all the rules given in parms against the given board "
-  [board filtered-parms]
-  (reduce (fn [_ rule]
-            (if-not (check-rule board rule)
-              (reduced false)
-              true))
-          true
-          filtered-parms))
 
 (defn recursive-check
   "Finds the first non-zero cell then try the values 1, 2, 3...
    If the attempt satisfies the rules the recurse to solve this new position"
   [board]
   (let [first-zero (first (filter #(= (second %) 0) board))
-        cell (first first-zero)
-        filtered-parms (filter (fn [x] (= (last x) cell)) parms)]
+        cell (first first-zero)]
     (if (nil? first-zero)
       (do (println board)
           (System/exit 0))
-      (doseq [m [1 2 3 4 5 6 7 8 9]]
-         (let [newboard (assoc board cell m)]
-           (if (and (check-all-rules newboard filtered-parms)
-                    (not (contains? (excluded-numbers newboard cell) m)))
-             (recursive-check newboard)))))))
+      (let [excl (excluded-numbers board cell)]
+        (doseq [m [1 2 3 4 5 6 7 8 9]]
+          (if (not (contains? excl m))
+            (let [newboard (assoc board cell m)]
+              (if (check-rule newboard cell)
+                (recursive-check newboard)))))))))
 
 (defn -main []
   (let [board (into (sorted-map) (zipmap (range 0 81) (repeat 0)))]
