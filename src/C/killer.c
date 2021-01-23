@@ -3,7 +3,8 @@
 #include <string.h>
 #include <time.h>
 
-int rules[50][5];
+int rules[81][5];
+char related[81][81];
 clock_t t;
 
 int readRules()
@@ -21,60 +22,113 @@ int readRules()
 	while (fgets(line, sizeof(line), fp) != NULL && i < 50)
 	{
 		int j = 0;
+		int rule[5];
 		for (token = strtok(line, ","); j < 5; token = strtok(NULL, ","))
 		{
 			if (token == NULL)
-				rules[i][j++] = -1;
+				rule[j++] = -1;
 			else
-				rules[i][j++] = atof(token);
+				rule[j++] = atof(token);
 		}
 		i++;
+		for (j = 1; j < 5; j++)
+		{
+			if (rule[j] != -1)
+			{
+				for (int k = 0; k < 5; k++)
+				{
+					rules[rule[j]][k] = rule[k];
+				}
+			}
+		}
 	}
-	rules[i][0] = -1;
 	fclose(fp);
 }
 
-int checkRules(int b[81], int i)
+int checkRules(int b[81], int i, int m)
 {
-	int j;
-	for (j = 0; rules[j][1] != i && rules[j][2] != i && rules[j][3] != i && rules[j][4] != i; j++)
+	if (rules[i][3] == -1)
 	{
+		if (rules[i][2] != i)
+		{
+			return -1;
+		}
+		else
+		{
+			if (rules[i][0] == b[rules[i][1]] + m)
+			{
+				return -1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
 	}
 
-	if (b[rules[j][1]] == 0 || b[rules[j][2]] == 0 || b[rules[j][3]] == 0 || b[rules[j][4]] == 0)
-		return -1;
-
-	if (rules[j][3] == -1)
-		if (rules[j][0] == b[rules[j][1]] + b[rules[j][2]])
+	if (rules[i][4] == -1)
+	{
+		if (rules[i][3] != i)
+		{
 			return -1;
+		}
 		else
-			return 0;
+		{
+			if (rules[i][0] == b[rules[i][1]] + b[rules[i][2]] + m)
+			{
+				return -1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+	}
 
-	if (rules[j][4] == -1)
-		if (rules[j][0] == b[rules[j][1]] + b[rules[j][2]] + b[rules[j][3]])
-			return -1;
-		else
-			return 0;
-
-	if (rules[j][0] == b[rules[j][1]] + b[rules[j][2]] + b[rules[j][3]] + b[rules[j][4]])
+	if (rules[i][4] != i)
+	{
 		return -1;
+	}
 	else
-		return 0;
+	{
+		if (rules[i][0] == b[rules[i][1]] + b[rules[i][2]] + b[rules[i][3]] + m)
+		{
+			return -1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
 }
 
-int checkBoard(int b[81], int i)
+int checkBoard(int b[81], int i, int m)
 {
-	if (checkRules(b, i) == 0)
+	if (checkRules(b, i, m) == 0)
 		return 0;
 
-	for (int j = 0; j < 81; j++)
+	for (int j = 0; j < i; j++)
 	{
 		if (i != j)
 		{
-			if ((i / 9 == j / 9) || ((i - j) % 9 == 0) || ((i / 27 == j / 27) && (i % 9 / 3 == j % 9 / 3)))
+			if (related[i][j] == '\0')
 			{
-				if (b[i] == b[j])
+				if ((i / 9 == j / 9) || ((i - j) % 9 == 0) || ((i / 27 == j / 27) && (i % 9 / 3 == j % 9 / 3)))
+				{
+					related[i][j] = 'Y';
+				}
+				else
+				{
+					related[i][j] = 'N';
+				}
+			}
+			if (related[i][j] == 'Y')
+			{
+
+				if (b[j] == m)
+				{
 					return 0;
+				}
 			}
 		}
 	}
@@ -100,21 +154,23 @@ int recursiveCheck(int board[81])
 			printf("%d ", board[j]);
 
 		t = clock() - t;
-		double e = ((double)t)/CLOCKS_PER_SEC;
+		double e = ((double)t) / CLOCKS_PER_SEC;
 		printf("\nelapsed time=%f\n", e);
 		exit(0);
 	}
 
 	for (m = 1; m < 10; m++)
 	{
-		for (int j = 0; j < 81; j++)
+		if (checkBoard(board, i, m))
 		{
-			newBoard[j] = board[j];
-		}
-		newBoard[i] = m;
-		if (checkBoard(newBoard, i))
-		{
+			for (int j = 0; j < 81; j++)
+			{
+				newBoard[j] = board[j];
+			}
+			newBoard[i] = m;
+
 			recursiveCheck(newBoard);
+			int z = 1;
 		}
 	}
 }
