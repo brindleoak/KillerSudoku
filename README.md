@@ -1,6 +1,6 @@
 <h1> Killer Sudoku implemented in various languages</h1>
 
-<img src="https://images.app.goo.gl/8Y8VhbzfsFdAayYs5">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Killersudoku_color.svg/1024px-Killersudoku_color.svg.png">
 <h2>League Table</h2>
 <table>
 <tr><td>Language</td><td>Time to complete*</td>
