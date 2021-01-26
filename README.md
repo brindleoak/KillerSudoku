@@ -1,5 +1,7 @@
 <h1> Killer Sudoku implemented in various languages</h1>
-  <h2>League Table</h2>
+
+<img src="https://images.app.goo.gl/8Y8VhbzfsFdAayYs5">
+<h2>League Table</h2>
 <table>
 <tr><td>Language</td><td>Time to complete*</td>
 <tr><td>C</td><td>0.09s</td>
