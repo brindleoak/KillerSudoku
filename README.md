@@ -1,5 +1,5 @@
-<h1> Killer Sudoku implemented in various languages
-<h2>League Table
+<h1> Killer Sudoku implemented in various languages</h1>
+  <h2>League Table</h2>
 <table>
 <tr><td>C</td><td>0.09s</td>
 <tr><td>Go</td><td>0.28s</td>
