@@ -16,8 +16,8 @@
 <tr><td>COBOL</td><td>1minute (running on z/OS mainframe)</td>
 <tr><td>Powershell</td><td>24minutes</td>
 <tr><td>JavaScript</td><td>tba</td>
-<tr><td>Python</td><td>Similar to Ruby elapsed</td>
-<tr><td>Smalltalk</td><td>Similar to Ruby elapsed</td>
+<tr><td>Python</td><td>Similar to Ruby elapsed(not performed on reference hardware)</td>
+<tr><td>Smalltalk</td><td>(not performed on reference hardware)</td>
 <tr><td>TypeScript</td><td>tba</td>
 </table>
 
