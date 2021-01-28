@@ -17,7 +17,7 @@
 <tr><td>Powershell</td><td>24minutes</td>
 <tr><td>JavaScript</td><td>tba</td>
 <tr><td>Python</td><td>Similar to Ruby elapsed(not performed on reference hardware)</td>
-<tr><td>Smalltalk</td><td>(not performed on reference hardware)</td>
+<tr><td>Smalltalk</td><td>Similar to Ruby elapsed(not performed on reference hardware)</td>
 <tr><td>TypeScript</td><td>tba</td>
 </table>
 
