@@ -6,6 +6,7 @@
 <tr><td>Language</td><td>Time to complete*</td>
 <tr><td>C</td><td>0.09s</td>
 <tr><td>Go</td><td>0.28s</td>
+<tr><td>Rust</td><td>0.66s</td>
 <tr><td>Java</td><td>0.96s</td>
 <tr><td>C#</td><td>1.32s</td>
 <tr><td>Scala</td><td>2.88s</td>
@@ -16,7 +17,6 @@
 <tr><td>Powershell</td><td>24minutes</td>
 <tr><td>JavaScript</td><td>tba</td>
 <tr><td>Python</td><td>tba</td>
-<tr><td>Rust</td><td>tba</td>
 <tr><td>Smalltalk</td><td>tba</td>
 <tr><td>TypeScript</td><td>tba</td>
 </table>
