@@ -9,6 +9,7 @@
 <tr><td>Rust</td><td>0.66s</td>
 <tr><td>Java</td><td>0.96s</td>
 <tr><td>C#</td><td>1.32s</td>
+<tr><td>TypeScript</td><td>2.5s</td>
 <tr><td>Scala</td><td>2.88s</td>
 <tr><td>Ruby</td><td>7s</td>
 <tr><td>Python</td><td>8.46s</td>
@@ -18,7 +19,6 @@
 <tr><td>Powershell</td><td>24minutes</td>
 <tr><td>JavaScript</td><td>tba</td>
 <tr><td>Smalltalk</td><td>Similar to Ruby elapsed(not performed on reference hardware)</td>
-<tr><td>TypeScript</td><td>tba</td>
 </table>
 
 *timings unless otherwise stated on my laptop with Intel® Core™ i7-8750H CPU @ 2.20GHz × 12
