@@ -9,8 +9,8 @@
 <tr><td>Rust</td><td>0.66s</td>
 <tr><td>Java</td><td>0.96s</td>
 <tr><td>C#</td><td>1.32s</td>
-<tr><td>TypeScript</td><td>2.5s</td>
-<tr><td>JavaScript</td><td>2.5s</td>
+<tr><td>TypeScript</td><td>1.8s</td>
+<tr><td>JavaScript</td><td>1.8s</td>
 <tr><td>Scala</td><td>2.88s</td>
 <tr><td>Ruby</td><td>7s</td>
 <tr><td>Python</td><td>8.46s</td>
