@@ -1,37 +1,18 @@
-let values: number[][] = [
-  [7, 0, 1],
-  [27, 2, 9, 10, 11],
-  [7, 3, 4],
-  [17, 5, 6, 7, 15],
-  [16, 8, 17],
-  [8, 12, 13, 14],
-  [14, 16, 25, 26],
-  [10, 18, 19, 28],
-  [13, 20, 21],
-  [19, 22, 23, 32],
-  [19, 24, 33, 42],
-  [16, 27, 36],
-  [3, 29, 38],
-  [12, 30, 31],
-  [9, 34, 35],
-  [8, 37, 46],
-  [12, 39, 48],
-  [5, 40, 49],
-  [14, 41, 50],
-  [6, 43, 44, 53],
-  [17, 45, 54, 63, 72],
-  [7, 47, 56],
-  [16, 51, 52],
-  [16, 55, 64, 65],
-  [17, 57, 66],
-  [18, 58, 59, 67],
-  [7, 60, 69, 70],
-  [23, 61, 62, 71],
-  [7, 68, 77],
-  [17, 73, 74],
-  [3, 75, 76],
-  [15, 78, 79, 80],
-];
+const fs = require('fs')
+const startTime: Date = new Date()
+var values: number[][] = [[]]
+
+try {
+  const lines = fs.readFileSync('puzzle.csv', 'utf8').split('\n')
+  for (var line of lines) {
+    values.push(line.split(',').map(Number)); 
+  }
+  values.splice(0, 1)
+
+} catch (err) {
+  console.error(err)
+}
+
 const parms: number[][] = values.sort(
   (a, b) => a[a.length - 1] - b[b.length - 1]
 );
@@ -75,7 +56,8 @@ function recursiveCheck(inBoard: number[]) {
   let i: number = inBoard.indexOf(0);
   if (i == -1) {
     console.log(inBoard);
-    return true;
+    console.log(((new Date()).getTime() - startTime.getTime()) / 1000.0)
+    return process.exit(0);
   }
 
   let excludedNumbers = new Set();
