@@ -1,6 +1,6 @@
 [simon@fedora Python]$ python killer.py
-Start Timestamp :  02-Feb-2021 (21:04:50.735172)
-End Timestamp   :  02-Feb-2021 (21:04:56.551290)
+Start Timestamp :  02-Feb-2021 (21:48:25.066241)
+End Timestamp   :  02-Feb-2021 (21:48:30.402925)
 528437169
 496251387
 317689524
@@ -10,3 +10,5 @@ End Timestamp   :  02-Feb-2021 (21:04:56.551290)
 143875296
 275963418
 689124753
+
+[simon@fedora Python]$ 
