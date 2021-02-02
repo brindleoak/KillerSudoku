@@ -2,11 +2,9 @@ import sys
 import csv
 from datetime import datetime
 
-def same_row(i,j): return (i//9 == j//9)  # Floor division of integers
-def same_col(i,j): return (i-j) % 9 == 0   # if difference of i and j is 9 then they are in the same column
-def same_block(i,j): return (i//27 == j//27 and i%9//3 == j%9//3)   #modulus and floor division to see if numbers are in the same block 
-def get_parms():
+related = [[None]*81 for _ in range(81)]
 
+def get_parms():
 	global parms
 	parms = {}
 	with open('puzzle.csv') as csvfile:
@@ -33,18 +31,24 @@ def display(values):
     while x <9:
         y = y + values[(x*9):((x+1)*9)] + '\r' + '\n'  
         x = x+1
-    return y            
+    return y  
+
 def recursive_check(a):
 	global b
 	i = a.find('0')
 	if i == -1:
 		dateTimeObj = datetime.now()
 		timestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S.%f)")
-		print('Current Timestamp : ', timestampStr)
+		print('End Timestamp   : ', timestampStr)
 		sys.exit(display(a))
 	excluded_numbers = set()
 	for j in range(i):
-		if same_row(i,j) or same_col(i,j) or same_block(i,j):
+		if related[i][j] == None:
+			if (i//9 == j//9) or (i-j) % 9 == 0 or (i//27 == j//27 and i%9//3 == j%9//3):
+				related[i][j] = 1
+			else:
+				related[i][j] = 0
+		if related[i][j] == 1:		
 			if a[j] != '0':
 				excluded_numbers.add(a[j])
 
@@ -55,22 +59,9 @@ def recursive_check(a):
 				recursive_check(b)
       
 if __name__ == '__main__':
-	sys.argv = [sys.argv[0], "000000000000000000000000000000000000000000000000000000000000000000000000000000000"]
-
-	if len(sys.argv) == 2 and len(sys.argv[1]) == 81:
-		input = (sys.argv[1])
-		print(display(input))
-		dateTimeObj = datetime.now()
-		timestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S.%f)")
-		print('Current Timestamp : ', timestampStr)
-    
-		get_parms()
-		print(parms)
-		recursive_check(input)
- 
-	else:
-		print('Usage: python sudoku.py')
-		print('  where puzzle.csv is a csv file with the first delimited value in each row being the sum value of each demarkated area and the subsequent delimited values are the cell positions making up the block from 0 to 80')
-		print((sys.argv[1]))		
-	
-	
+	board = "000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+	dateTimeObj = datetime.now()
+	timestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S.%f)")
+	print('Start Timestamp : ', timestampStr)
+	get_parms()
+	recursive_check(board)		
