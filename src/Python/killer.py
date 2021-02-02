@@ -24,15 +24,6 @@ def check_row(aRow,indexOfZero,newVal):
 		if sum != total: return False
 	return True        
 
-        
-def display(values):
-    x = 0
-    y = ""
-    while x <9:
-        y = y + values[(x*9):((x+1)*9)] + '\r' + '\n'  
-        x = x+1
-    return y  
-
 def recursive_check(a):
 	global b
 	i = a.find('0')
@@ -40,7 +31,9 @@ def recursive_check(a):
 		dateTimeObj = datetime.now()
 		timestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S.%f)")
 		print('End Timestamp   : ', timestampStr)
-		sys.exit(display(a))
+		print(a)
+		sys.exit(0)
+		
 	excluded_numbers = set()
 	for j in range(i):
 		if related[i][j] == None:
