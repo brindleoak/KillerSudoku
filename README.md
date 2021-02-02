@@ -12,8 +12,8 @@
 <tr><td>TypeScript</td><td>1.8s</td>
 <tr><td>JavaScript</td><td>1.8s</td>
 <tr><td>Scala</td><td>2.88s</td>
+<tr><td>Python</td><td>5.82s</td>
 <tr><td>Ruby</td><td>7s</td>
-<tr><td>Python</td><td>8.46s</td>
 <tr><td>F#</td><td>9.51s</td>
 <tr><td>Clojure</td><td>43.71s</td>
 <tr><td>COBOL</td><td>1minute (running on z/OS mainframe)</td>
