@@ -41,9 +41,13 @@ def recursiveCheck(inBoard)
 				if sameRow(pos, x) || sameCol(pos, x) || sameBlock(pos, x) 
 					$checks[pos][x] = true
 					excludedNumbers[inBoard[x]] = true
+				else
+					$checks[pos][x] = false
 				end	
 			else
-				excludedNumbers[inBoard[x]] = true
+				if $checks[pos][x]
+					excludedNumbers[inBoard[x]] = true
+				end	
 			end	
 			x += 1
 		end
@@ -64,7 +68,7 @@ def recursiveCheck(inBoard)
 end
 
 puts "#{Time.now}"
-$parms = CSV.read("/home/sandy/puzzle.csv",converters: :integer).to_h{ |x| [x.last(), x]}
+$parms = CSV.read("puzzle.csv",converters: :integer).to_h{ |x| [x.last(), x]}
 nums = Array.new(81) {|e| e = 0}
 puts "#{$parms}"
 $checks = Array.new(81){Array.new(81)}
