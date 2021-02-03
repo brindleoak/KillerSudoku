@@ -54,7 +54,9 @@ validCombo = {}
     for i=0,80 do
       validCombo[i] = {}     
       for j=0,80 do
-        validCombo[i][j] = same_row(i,j) or same_col(i,j) or same_block(i,j)
+		if j < i then
+			validCombo[i][j] = same_row(i,j) or same_col(i,j) or same_block(i,j)
+		end	
       end
     end
     return validCombo
@@ -125,5 +127,8 @@ rules = get_rules()
 validCombos = get_validCombo()
 local startBoard = get_startBoard()
 recursiveCheck(startBoard)
+
+
+
 
 
