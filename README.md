@@ -16,10 +16,11 @@
 <tr><td>10</td><td>Ruby</td><td>3.9s</td>
 <tr><td>11</td><td>Lua</td><td>4.4s</td>  
 <tr><td>12</td><td>Python</td><td>5.3s</td>
-<tr><td>13</td><td>F#</td><td>9.51s</td>
-<tr><td>14</td><td>Clojure</td><td>43.71s</td>
-<tr><td>15</td><td>COBOL</td><td>1minute (running on z/OS mainframe)</td>
-<tr><td>16</td><td>Powershell</td><td>24minutes</td>
+<tr><td>13</td><td>Swift</td><td>5.9s</td>
+<tr><td>14</td><td>F#</td><td>9.51s</td>
+<tr><td>15</td><td>Clojure</td><td>43.71s</td>
+<tr><td>16</td><td>COBOL</td><td>1minute (running on z/OS mainframe)</td>
+<tr><td>17</td><td>Powershell</td><td>24minutes</td>
 <tr><td>Smalltalk</td><td>Similar to Ruby elapsed(not performed on reference hardware)</td>
 </table>
 
