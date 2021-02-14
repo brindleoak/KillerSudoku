@@ -20,7 +20,8 @@
 <tr><td>14</td><td>F#</td><td>9.51s</td>
 <tr><td>15</td><td>Clojure</td><td>43.71s</td>
 <tr><td>16</td><td>COBOL</td><td>1minute (running on z/OS mainframe)</td>
-<tr><td>17</td><td>Powershell</td><td>24minutes</td>
+<tr><td>17</td><td>R</td><td>2m54</td>
+<tr><td>18</td><td>Powershell</td><td>24minutes</td>
 <tr><td>Smalltalk</td><td>Similar to Ruby elapsed(not performed on reference hardware)</td>
 </table>
 
