@@ -10,12 +10,6 @@ import java.util.stream.IntStream;
 import java.io.*;
 import java.sql.Timestamp;
 
-/**
- * 
- * A simple Java Program to demonstrate how to use map and filter method Java 8.
- * In this program, we'll convert a list of String into a list of Integer and
- * then filter all even numbers.
- */
 public class Killer2 {
 
 	private static final int _0 = 0;
