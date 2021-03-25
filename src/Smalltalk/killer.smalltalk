@@ -1,13 +1,9 @@
-'From Pharo8.0.0 of 22 January 2020 [Build information: Pharo-8.0.0+build.1124.sha.0932da82f08175e906b0e2a8052120c823374e9f (64 Bit)] on 7 January 2021 at 10:27:00.404602 pm'!
 Object subclass: #Killer
 	instanceVariableNames: 'parms firstDigit'
 	classVariableNames: ''
 	package: 'Killer'!
 
-!Killer methodsFor: 'checking' stamp: 'Sandy 12/2/2020 22:23'!
 checkRow: aRow
-	"comment stating purpose of instance-side method"
-	"scope: class-variables  &  instance-variables"	
 		| total sum position|
 
 position := (aRow indexOf: 0) -1.		
@@ -25,35 +21,17 @@ self getParms do:
 		]
 	
 	].
-^true
-   
-! !
+	^true
 
-!Killer methodsFor: 'checking' stamp: 'Anonymous 12/5/2020 19:39'!
 sameRow: i cell: j
-	"comment stating purpose of instance-side method"
-	"scope: class-variables  &  instance-variables"	
-			
-	
 	^((i-1//9) = (j-1//9))! !
 
-!Killer methodsFor: 'checking' stamp: 'Anonymous 12/4/2020 21:49'!
 sameCol: i cell: j
-	"comment stating purpose of instance-side method"
-	"scope: class-variables  &  instance-variables"	
-			
-	
 	^((i-j) \\ 9) = 0! !
 
-!Killer methodsFor: 'checking' stamp: 'Anonymous 12/5/2020 22:38'!
 sameBlock: i cell: j
-	"comment stating purpose of instance-side method"
-	"scope: class-variables  &  instance-variables"	
-			
-^((i-1//27) = (j-1//27)) and: [((i-1 \\ 9)//3) = ((j-1 \\ 9)//3)]
- ! !
+	^((i-1//27) = (j-1//27)) and: [((i-1 \\ 9)//3) = ((j-1 \\ 9)//3)]
 
-!Killer methodsFor: 'checking' stamp: 'Anonymous 12/6/2020 20:58'!
 recursiveCheck: aGrid
 	"comment stating purpose of instance-side method"
 	"scope: class-variables  &  instance-variables"	
@@ -63,9 +41,9 @@ recursiveCheck: aGrid
 	"(self firstDigit = aGrid first) ifFalse: [self firstDigit: aGrid first. Transcript show: ((aGrid printString))  ]."
 
    (self checkRow: aGrid) ifFalse: 
-		[
-		 ^false
-		]. 
+	[
+	 ^false
+	]. 
 
 	aGrid detect: [:a | a = 0] ifNone:[Transcript cr. Transcript show: aGrid printString. ^false ]. 
 	
@@ -74,13 +52,13 @@ recursiveCheck: aGrid
 	excludedNumbers := Set new.
 	 
 	1 to: i-1 do:
-	 [ 
+		[ 
 		:j | ((self sameRow: i cell: j) or: [(self sameCol: i cell: j) or: [self sameBlock: i cell: j]]) ifTrue:    
 			[ 
 				(aGrid at: j) = 0 ifFalse: [ excludedNumbers add: (aGrid at: j) ]
 			]
-	 ].
-    1 to: 9 do: 
+	 	].
+    	1 to: 9 do: 
 		[
 			:x | excludedNumbers detect: [:y | y = x] ifNone: 
 			[
@@ -93,51 +71,28 @@ recursiveCheck: aGrid
 			]
 		].
 	^false
-! !
 
-
-!Killer methodsFor: 'accessing' stamp: 'Sandy 10/30/2020 19:34'!
 firstDigit: anObject
-	firstDigit := anObject! !
+	firstDigit := anObject
 
-!Killer methodsFor: 'accessing' stamp: 'Sandy 10/30/2020 19:34'!
 firstDigit
-	^ firstDigit! !
+	^ firstDigit
 
-
-!Killer methodsFor: 'initialization' stamp: 'Sandy 10/18/2020 22:45'!
 getParms
-	"comment stating purpose of instance-side method"
-	"scope: class-variables  &  instance-variables"	
-			
-	
-	^parms ! !
+	^parms
 
-!Killer methodsFor: 'initialization' stamp: 'Sandy 10/31/2020 22:56'!
 run 
-	"comment stating purpose of instance-side method"
-	"scope: class-variables  &  instance-variables"	
- 			
    | input |
  
 input:= (OrderedCollection new).
 input add:0 withOccurrences:81.
 input at: 1 put: 5.
-self recursiveCheck: input.! !
+self recursiveCheck: input.
 
-!Killer methodsFor: 'initialization' stamp: 'Sandy 10/18/2020 22:44'!
 setParms: parameters
-	"comment stating purpose of instance-side method"
-	"scope: class-variables  &  instance-variables"	
-			
-	
-	parms:= parameters ! !
+	parms:= parameters
 
-!Killer methodsFor: 'initialization' stamp: 'Sandy 10/30/2020 20:25'!
 initialize 
-	"comment stating purpose of instance-side method"
-	"scope: class-variables  &  instance-variables"	
- 			
    | params |
  
 	super initialize.
