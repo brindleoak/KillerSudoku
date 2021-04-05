@@ -23,7 +23,7 @@
 <tr><td>17</td><td>COBOL</td><td>1minute (running on z/OS mainframe)</td>
 <tr><td>18</td><td>R</td><td>2m54</td>
 <tr><td>19</td><td>Powershell</td><td>24minutes</td>
-<tr><td>Smalltalk</td><td>Similar to Ruby elapsed(not performed on reference hardware)</td>
+<tr><td>n/a</td><td>Smalltalk</td><td>Similar to Ruby elapsed(not performed on reference hardware)</td>
 </table>
 
 *timings unless otherwise stated on my laptop with Intel® Core™ i7-8750H CPU @ 2.20GHz × 12
