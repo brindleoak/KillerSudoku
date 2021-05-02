@@ -10,8 +10,9 @@
 <tr><td>4</td><td>Rust</td><td>0.66s</td>
 <tr><td>5</td><td>Java</td><td>0.96s</td>
 <tr><td>6</td><td>C#</td><td>1.32s</td>
-<tr><td>7=</td><td>TypeScript</td><td>1.8s</td>
-<tr><td>7=</td><td>JavaScript</td><td>1.8s</td>
+<tr><td>7</td><td>Scala</td><td>1.75s</td>
+<tr><td>8=</td><td>TypeScript</td><td>1.8s</td>
+<tr><td>8=</td><td>JavaScript</td><td>1.8s</td>
 <tr><td>9</td><td>Dart</td><td>2s</td>
 <tr><td>10</td><td>Scala</td><td>2.88s</td>
 <tr><td>11</td><td>Ruby</td><td>3.9s</td>
