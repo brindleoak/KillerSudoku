@@ -1,7 +1,5 @@
-{-# LANGUAGE BlockArguments #-}
 {-# LANGUAGE TupleSections #-}
 module Main where
-
 import Data.List.Split(splitOn)
 import qualified GHC.List as L
 import qualified Data.Vector.Unboxed as V
@@ -11,8 +9,7 @@ import Debug.Trace (trace)
 
 main = do
     rulesFile <- readFile "puzzle.csv"
-    let rules = getRules rulesFile
-    let solution = recursiveCheck (False, V.fromList (replicate 81 0)) rules
+    let solution = recursiveCheck (False, V.fromList (replicate 81 0)) (getRules rulesFile)
     print solution
 
 getRules s =
@@ -28,7 +25,6 @@ relatedCells = array (0, 80) (map (\x ->  (x, getRelatedCells x)) [0..80])
         isRelated cell el = cell /= el && (sameRow cell el || sameCol cell el || sameBlock cell el)
         getRelatedCells cell = filter (isRelated cell) [0..80]
 
-recursiveCheck (True, board) rules = (True, board)  
 recursiveCheck (solved, board) rules =
     let zeroCell = V.elemIndex 0 board
     in case zeroCell of
