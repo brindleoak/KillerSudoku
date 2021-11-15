@@ -13,9 +13,9 @@ main = do
     print solution
 
 getRules s =
-    let l = (map (map (read::String->Int) . splitOn ",") . lines) s
-        f =  map (\l -> map (, l) (tail l)) l
-    in  array (0, 80) (concat f)
+    let l = (map (map (read::String->Int) . splitOn ",") . lines) s  -- turn rules string into a list of list of Ints
+        f =  map (\el -> map (, el) (tail el)) l                     -- create a tuple for each Int in the tail
+    in  array (0, 80) (concat f)                                     -- flatten and construct array
 
 relatedCells = array (0, 80) (map (\x ->  (x, getRelatedCells x)) [0..80])
     where
