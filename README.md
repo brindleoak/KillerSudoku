@@ -8,14 +8,14 @@
 <h2>League Table</h2>
 <table>
 <tr><td>Position</td><td>Language</td><td>Time to complete*</td><td>Lines of Code</td>
-<tr><td>1</td><td>C</td><td>0.09s</td><td>103</td>
+  <tr><td>1</td><td>C</td><td><b>0.09s</b></td><td>103</td>
 <tr><td>2</td><td>Go</td><td>0.28s</td><td>122</td>
 <tr><td>3</td><td>Kotlin</td><td>0.51s</td><td>80</td>
 <tr><td>4</td><td>Rust</td><td>0.66s</td><td>117</td>
 <tr><td>5</td><td>Java</td><td>0.96s</td><td>87</td>
 <tr><td>6</td><td>Haskell</td><td>1.07s</td><td>36</td>
 <tr><td>7</td><td>C#</td><td>1.32s</td><td>94</td>
-<tr><td>8</td><td>Scala</td><td>1.5s</td><td>29</td>
+<tr><td>8</td><td>Scala</td><td>1.5s</td><td><b>29</b></td>
 <tr><td>9=</td><td>TypeScript</td><td>1.8s</td><td>76</td>
 <tr><td>9=</td><td>JavaScript</td><td>1.8s</td><td></td>
 <tr><td>11</td><td>Dart</td><td>2s</td><td>78</td>
