@@ -8,8 +8,8 @@ case class Position(solved: Boolean, board: Array[Int])
   println(solution.board.mkString(" "))
 
 val rules: Array[Array[Int]] = Source.fromFile("puzzle.csv").getLines
-  .map(line => line.split(",").map(_.toInt))
-  .flatMap(el => el.tail.map(x => (x, el))).toList.sortBy(x => x._1).map(_._2).toArray
+  .map(_.split(",").map(_.toInt))
+  .flatMap(el => el.tail.map( (_, el) )).toList.sortBy(_._1).map(_._2).toArray
 
 val relatedCells: Array[Array[Int]] =
   val sameRow = (i: Int, j: Int) => i / 9 == j / 9
@@ -22,8 +22,7 @@ val relatedCells: Array[Array[Int]] =
 
 val recursiveCheck: Position => Position = pos =>
   val i = pos.board.indexOf(0)
-  if (i == -1)
-    Position(true, pos.board)
+  if i == -1 then Position(true, pos.board)
   else
     val validAttempt = (m: Int) => !(relatedCells(i).map(pos.board) contains m)
       && (rules(i).last != i
@@ -31,7 +30,7 @@ val recursiveCheck: Position => Position = pos =>
 
     val step = (pos: Position, m: Int) =>
       if !pos.solved && validAttempt(m) then recursiveCheck(Position(false, pos.board.updated(i, m))) match
-        case Position(false, board) => Position(false, board.updated(i, 0))
+        case Position(false, _) => pos 
         case solved => solved
       else pos
 
