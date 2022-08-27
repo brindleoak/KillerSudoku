@@ -17,7 +17,7 @@
 <tr><td>7</td><td>C#</td><td>1.32s</td>
 <tr><td>8</td><td>Scala</td><td>1.5s</td>
 <tr><td>9=</td><td>TypeScript</td><td>1.8s</td>
-<tr><td>10=</td><td>JavaScript</td><td>1.8s</td>
+<tr><td>9=</td><td>JavaScript</td><td>1.8s</td>
 <tr><td>11</td><td>Dart</td><td>2s</td>
 <tr><td>12</td><td>Ruby</td><td>3.9s</td>
 <tr><td>13</td><td>Lua</td><td>4.4s</td>  
