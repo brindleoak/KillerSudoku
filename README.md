@@ -1,5 +1,9 @@
 <h1> Killer Sudoku implemented in various languages</h1>
-
+<h3> Rules:</h3>
+<p>The objective is to fill the grid with numbers from 1 to 9 in a way that the following conditions are met:
+<li>Every row, column, and block of 9 cells contains each number exactly once</li>
+<li>The sum of all numbers in a cage (group of adjacent blocks with the same colour) must match the small number printed in its corner</li>
+<li>No number appears more than once in a cage</li></p>
 <img src="https://github.com/brindleoak/KillerSudoku/blob/master/resources/killer2.png">
 <h2>League Table</h2>
 <table>
