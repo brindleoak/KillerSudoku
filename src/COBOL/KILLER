@@ -9,6 +9,9 @@
                10  RULE-CELL       PIC 99    OCCURS 10
                                              INDEXED BY X.
 
+      * This is a bit of a cheat. The other versions read in and
+      * parse a CSV file. I just couldn't be bothered with that
+      * in COBOL so just hard-coded a game here
        01  EXAMPLE-GAME.
            05  FILLER   PIC X(22)  VALUE "0701020000000000000000".
            05  FILLER   PIC X(22)  VALUE "2703101112000000000000".
@@ -66,17 +69,10 @@
            88  M-IS-VALID                         VALUE 'Y'.
            88  M-IS-INVALID                       VALUE 'N'.
 
-      * 01  LS-X                       PIC S9(4) COMP.
        01  LS-STACK OCCURS 10000 INDEXED BY LS-X.
            05  LS-BOARD               PIC X(81).
            05  LS-I                   PIC S9(4) COMP.
            05  LS-M                   PIC 9.
-
-      
-       LOCAL-STORAGE SECTION.
-      * 01  LS-BOARD                   PIC X(81).
-      * 01  LS-I                       PIC S9(4) COMP.
-      * 01  LS-M                       PIC 9.
       
        PROCEDURE DIVISION.
 
@@ -85,10 +81,7 @@
            SET LS-X              TO 1.
            MOVE EXAMPLE-GAME     TO RULES.
 
-      *     ENTRY "RECURSIVECHECK".
        RECURSIVECHECK.
-
-      *     DISPLAY I ' ' M ' ' LS-X ' 'BOARD.
       
       * Finds the first non-zero cell then try the values 1, 2, 3...
       * If the attempt satisfies the rules the recurse to solve this
