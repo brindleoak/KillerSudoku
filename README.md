@@ -11,7 +11,7 @@
 <tr><td>5</td><td>Java</td><td>0.96s</td>
 <tr><td>6</td><td>Haskell</td><td>1.07s</td>
 <tr><td>7</td><td>C#</td><td>1.32s</td>
-<tr><td>8</td><td>Scala</td><td>1.75s</td>
+<tr><td>8</td><td>Scala</td><td>1.5s</td>
 <tr><td>9=</td><td>TypeScript</td><td>1.8s</td>
 <tr><td>10=</td><td>JavaScript</td><td>1.8s</td>
 <tr><td>11</td><td>Dart</td><td>2s</td>
