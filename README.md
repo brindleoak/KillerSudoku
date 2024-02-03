@@ -24,10 +24,11 @@
 <tr><td>14</td><td>Python</td><td>5.3s</td><td>53</td>
 <tr><td>15</td><td>Swift</td><td>5.9s</td><td>46</td>
 <tr><td>16</td><td>F#</td><td>9.51s</td><td>62</td>
-<tr><td>17</td><td>Clojure</td><td>43.71s</td><td>59</td>
-<tr><td>18</td><td>COBOL</td><td>1minute (running on z/OS mainframe)</td><td>169</td>
-<tr><td>19</td><td>R</td><td>2m54</td><td>49</td>
-<tr><td>20</td><td>Powershell</td><td>24minutes</td><td>78</td>
+<tr><td>17</td><td>Elm</td><td>12s</td><td>62</td>
+<tr><td>18</td><td>Clojure</td><td>43.71s</td><td>59</td>
+<tr><td>19</td><td>COBOL</td><td>1minute (running on z/OS mainframe)</td><td>169</td>
+<tr><td>20</td><td>R</td><td>2m54</td><td>49</td>
+<tr><td>21</td><td>Powershell</td><td>24minutes</td><td>78</td>
 <tr><td>n/a</td><td>Smalltalk</td><td>Similar to Ruby elapsed<br>(not performed on reference hardware)</td><td>77</td>
 </table>
 
