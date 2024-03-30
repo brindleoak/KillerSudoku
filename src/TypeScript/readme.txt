@@ -13,3 +13,8 @@ PS /home/simon/Killer/TypeScript> node killer.js
 ]
 1.814
 PS /home/simon/Killer/TypeScript> 
+
+
+Version 2 is a re-write using a pure functional approach... no mutatiions.
+So this is looking very close to the Scala, Haskell, Elm veriants now.
+It runs much slower... at 15s

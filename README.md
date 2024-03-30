@@ -16,15 +16,15 @@
 <tr><td>6</td><td>Haskell</td><td>1.07s</td><td>36</td>
 <tr><td>7</td><td>C#</td><td>1.32s</td><td>94</td>
 <tr><td>8</td><td>Scala</td><td>1.5s</td><td><b>29</b></td>
-<tr><td>9=</td><td>TypeScript</td><td>1.8s</td><td>76</td>
-<tr><td>9=</td><td>JavaScript</td><td>1.8s</td><td></td>
-<tr><td>11</td><td>Dart</td><td>2s</td><td>78</td>
-<tr><td>12</td><td>Ruby</td><td>3.9s</td><td>66</td>
-<tr><td>13</td><td>Lua</td><td>4.4s</td><td>115</td>  
-<tr><td>14</td><td>Python</td><td>5.3s</td><td>53</td>
-<tr><td>15</td><td>Swift</td><td>5.9s</td><td>46</td>
-<tr><td>16</td><td>F#</td><td>9.51s</td><td>62</td>
-<tr><td>17</td><td>Elm</td><td>12s</td><td>138</td>
+<tr><td>9</td><td>JavaScript</td><td>1.8s</td><td></td>
+<tr><td>10</td><td>Dart</td><td>2s</td><td>78</td>
+<tr><td>11</td><td>Ruby</td><td>3.9s</td><td>66</td>
+<tr><td>12</td><td>Lua</td><td>4.4s</td><td>115</td>  
+<tr><td>13</td><td>Python</td><td>5.3s</td><td>53</td>
+<tr><td>14</td><td>Swift</td><td>5.9s</td><td>46</td>
+<tr><td>15</td><td>F#</td><td>9.51s</td><td>62</td>
+<tr><td>16</td><td>Elm</td><td>12s</td><td>138</td>
+<tr><td>17</td><td>TypeScript*</td><td>1.8s</td><td>76</td>
 <tr><td>18</td><td>Clojure</td><td>43.71s</td><td>59</td>
 <tr><td>19</td><td>COBOL</td><td>1minute (running on z/OS mainframe)</td><td>169</td>
 <tr><td>20</td><td>R</td><td>2m54</td><td>49</td>
@@ -32,4 +32,6 @@
 <tr><td>n/a</td><td>Smalltalk</td><td>Similar to Ruby elapsed<br>(not performed on reference hardware)</td><td>77</td>
 </table>
 
-*timings unless otherwise stated on my laptop with Intel® Core™ i7-8750H CPU @ 2.20GHz × 12
+*The TypeScript version is quite different to the JavaScript version, being implemented in a functional style with no mutations. This runs a *lot* slower
+
+Timings unless otherwise stated on my laptop with Intel® Core™ i7-8750H CPU @ 2.20GHz × 12
