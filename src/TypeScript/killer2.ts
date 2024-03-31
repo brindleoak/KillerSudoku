@@ -11,7 +11,7 @@ let sameCol = (i: number, j: number): boolean => (i - j) % 9 == 0
 let sameBlock = (i: number, j: number): boolean => (i / 27 >> 0) == (j / 27 >> 0) && ((i % 9) / 3 >> 0) == (j % 9) / 3 >> 0
 let isRelated = (cell: number, el: number): boolean => cell != el && (sameRow(cell, el) || sameCol(cell, el) || sameBlock(cell, el))
 let getRelatedCells = (cell: number): number[] => Array.from(Array(81).keys()).filter(el => isRelated(cell, el))
-const relatedCells = Array.from(Array(81).keys()).map(getRelatedCells)
+const relatedCells = [...Array(81).keys()].map(getRelatedCells)
 
 type Position = {
     solved: boolean,
