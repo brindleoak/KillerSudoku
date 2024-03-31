@@ -29,14 +29,14 @@ let recursiveCheck = (pos: Position): Position => {
 
         let step = (pos: Position, m: number): Position => {
             if (!pos.solved && validAttempt(m)) {
-                let newPos = recursiveCheck({ solved: false, board: Object.assign([], pos.board, { [i]: m }) })
+                let newPos = recursiveCheck({ solved: false, board: [...pos.board.slice(0, i), m, ...pos.board.slice(i + 1)] })
                 if (newPos.solved) 
                     return newPos
             }
             return pos
         }
 
-        return Array.from({ length: 9 }, (_, i) => i + 1).reduce(step, { solved: false, board: pos.board })
+        return [1, 2, 3, 4, 5, 6, 7, 8, 9].reduce(step, { solved: false, board: pos.board })
     }
 }
 
